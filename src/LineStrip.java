@@ -14,7 +14,11 @@ public class LineStrip extends Shape {
 	// Returns "polygon" if closed, otherwise "polyline"
 	@Override
 	public String getTag(){
-		// Your implementation...
+		return closed ? "polygon" : "polyline";
+	}
+	
+	public void setClosed(boolean val) {
+		this.closed = val;
 	}
 
 	// (This method is finished. No need to edit.)
@@ -24,7 +28,7 @@ public class LineStrip extends Shape {
 
 		String s = "";
 		var p = new Vec2();
-		for(int i=0; i<vertices.length; i++){
+		for(int i=0; i<vertices.length/2; i++){
 			p.set(getVertex(i,0), getVertex(i,1));
 			transform(p);
 			p.negY(); // SVG has flipped y-axis. We negate y so +y is up.
@@ -34,25 +38,30 @@ public class LineStrip extends Shape {
 	}
 
 	public void setNumVertices(int n){
-		// Your implementation...
+		this.vertices = new float[n*2];
 	}
 
 	public int getNumVertices(){
-		// Your implementation...
+		return this.vertices.length/2;
 	}
 	
 	// Set vertex at index
 	public void setVertex(int i, float x, float y){
-		// Your implementation...
+		int index = i*2;
+		this.vertices[index]=x;
+		this.vertices[index+1]=y;
 	}
 	
 	// Set vertex at index
 	public void setVertex(int i, Vec2 p){
-		// Your implementation...
+		int index = i*2;
+		this.vertices[index]=p.x;
+		this.vertices[index+1]=p.y;
 	}
 
 	// Get vertex component (0:x or 1:y) at index
 	public float getVertex(int i, int comp){
-		// Your implementation...
+	    int index = i * 2 + comp; // Correctly calculate the index
+	    return this.vertices[index];
 	}
 }
