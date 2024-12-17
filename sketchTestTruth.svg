@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-100 -100 200 200">
+<polyline style="fill:none;stroke-width:4.0;stroke:#FF2000FF" points="-95.0,-65.0 95.0,-65.0 "/>
+<polyline style="fill:none;stroke-width:4.0;stroke:#FF2000FF" points="-95.0,65.0 95.0,65.0 "/>
+<circle style="fill:none;stroke-width:1.0;stroke:#000000FF" cx="-75.0" cy="-25.0" r="20.0"/>
+<path style="fill:none;stroke-width:1.0;stroke:#000000FF" d="M -45.0 -24.999998 A 20.0 20.0 0 0 0 -5.0 -25.0"/>
+<polygon style="fill:none;stroke-width:1.0;stroke:#000000FF" points="5.0,-5.0 45.0,-5.0 45.0,-45.0 5.0,-45.0 "/>
+<polygon style="fill:none;stroke-width:1.0;stroke:#000000FF" points="65.0,-5.0 85.0,-5.0 85.0,-45.0 65.0,-45.0 "/>
+<polygon style="fill:none;stroke-width:1.0;stroke:#000000FF" points="-75.0,5.0 -92.32051,35.0 -57.679493,35.0 "/>
+<polygon style="fill:none;stroke-width:1.0;stroke:#000000FF" points="-25.0,5.0 -45.0,25.0 -25.0,45.0 -5.0,25.0 "/>
+<polygon style="fill:none;stroke-width:1.0;stroke:#000000FF" points="25.0,5.0 5.9788685,18.81966 13.244295,41.18034 36.755707,41.18034 44.021133,18.81966 "/>
+<polygon style="fill:none;stroke-width:1.0;stroke:#000000FF" points="75.0,5.0 57.679493,15.0 57.679493,35.0 75.0,45.0 92.32051,35.0 92.32051,15.0 "/>
+</svg>

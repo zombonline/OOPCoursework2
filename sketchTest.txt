@@ -1,0 +1,15 @@
+# Top/bottom borders
+line -95  65 95  65 4 ff2000ff
+line -95 -65 95 -65 4 ff2000ff
+
+# Row 1: basic shapes
+circle 20 -75 25
+arc 20 -90 180 -25 25
+square 40 25 25
+rect 20 40 75 25
+
+# Row 2: regular polygons
+ngon 3 20 -75 -25
+ngon 4 20 -25 -25
+ngon 5 20  25 -25
+ngon 6 20  75 -25
