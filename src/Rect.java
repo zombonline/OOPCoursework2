@@ -4,7 +4,6 @@ public class Rect extends LineStrip {
 		setNumVertices(4);
 	}
 
-	// Construct from two endpoints
 	public Rect(float w, float h, float cX, float cY){
 		this();
 		this.setClosed(true);
@@ -13,7 +12,6 @@ public class Rect extends LineStrip {
 				new Vec2(cX+(w/2),cY-(h/2)),
 				new Vec2(cX+(w/2),cY+(h/2)),
 				new Vec2(cX-(w/2),cY+(h/2))}; 
-		
 		for(int i = 0; i < verts.length; i++) {
 			this.setVertex(i, verts[i]);
 		}

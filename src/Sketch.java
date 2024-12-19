@@ -84,7 +84,7 @@ public class Sketch {
     	float h = Float.parseFloat(parts[1]);
     	float cX = Float.parseFloat(parts[2]);
     	float cY = Float.parseFloat(parts[3]);
-        Rect newRect = new Rect(w,h,cX,cY);
+        Kite newRect = new Kite(w,h,cX,cY);
         parseOptionalValues(newRect, Arrays.copyOfRange(parts, 4, parts.length));
         newRect.updateAttribs();
         return newRect;
@@ -109,6 +109,18 @@ public class Sketch {
         parseOptionalValues(newPolygon, Arrays.copyOfRange(parts, 4, parts.length));
         newPolygon.updateAttribs();
         return newPolygon;
+    }
+    private Shape parseRightTriangle(String[] parts) {
+    	//righttriangle centrePos w h x y 
+    	boolean centrePos = Boolean.parseBoolean(parts[0]);
+    	float w = Float.parseFloat(parts[1]);
+    	float h = Float.parseFloat(parts[2]);
+    	float x = Float.parseFloat(parts[3]);
+    	float y = Float.parseFloat(parts[4]);
+        RightAngleTriangle newRightAngleTriangle = new RightAngleTriangle(centrePos,w,h,x,y);
+        parseOptionalValues(newRightAngleTriangle, Arrays.copyOfRange(parts, 5, parts.length));
+        newRightAngleTriangle.updateAttribs();
+        return newRightAngleTriangle;
     }
 
     // Parses the input file and adds shapes dynamically
@@ -139,6 +151,9 @@ public class Sketch {
                         break;
                     case "ngon":
                         shapes.add(parseRegPolygon(Arrays.copyOfRange(parts, 1, parts.length)));
+                        break;
+                    case "righttriangle":
+                        shapes.add(parseRightTriangle(Arrays.copyOfRange(parts, 1, parts.length)));
                         break;
                     default:
                         System.out.println("Unknown shape: " + shapeType);
