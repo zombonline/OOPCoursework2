@@ -1,10 +1,18 @@
 import java.io.*;
 import java.nio.file.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Sketch {
 	public SVG svg;
-	public Shape[] shapes;
+	public ArrayList<Shape> shapes;
+	
+	private Map<String, String[]> varMap = new HashMap<String, String[]>();
+	
+	public Sketch() {
+		svg = new SVG();
+		shapes = new ArrayList<Shape>();
+	}
 	
     private boolean isFloat(String val) {
     	try {
@@ -16,6 +24,7 @@ public class Sketch {
     	}
     }
     private int getHexColorInt(String val) {
+    	System.out.print("trying to get color from" + val);
     	int r = Integer.parseInt(val.substring(0, 2), 16);
     	int g = Integer.parseInt(val.substring(2, 4), 16);
     	int b = Integer.parseInt(val.substring(4, 6), 16);
@@ -81,6 +90,36 @@ public class Sketch {
 
         shape.addContent(newAnim);
     }
+    private String[] replaceVarValues(String[] parts) {
+    	int i = -1;
+    	String[] currentParts = parts;
+    	while(i < currentParts.length-1) {
+    		i++;
+    		if(!varMap.containsKey(currentParts[i])) {continue;}
+    		System.out.println("\nContains " + currentParts[i]);
+    		String[] start = Arrays.copyOfRange(currentParts, 0, i);
+    		String[] value = varMap.get(currentParts[i]);
+    		String[] end = Arrays.copyOfRange(currentParts, i+1, currentParts.length);
+     		
+    		 // Calculate the size of the combined array
+            int totalLength = start.length + value.length + end.length;
+
+            // Create a new array to hold all elements
+            String[] combinedParts = new String[totalLength];
+
+            // Copy elements from each array into the combined array
+            System.arraycopy(start, 0, combinedParts, 0, start.length);
+            System.arraycopy(value, 0, combinedParts, start.length, value.length);
+            System.arraycopy(end, 0, combinedParts, start.length + value.length, end.length);
+            currentParts = combinedParts;
+            i=0;
+    	}
+    	System.out.println("\nparts now changed to ");
+    	for(String part: currentParts) {
+    		System.out.print(part + " ");
+    	}
+    	return currentParts;
+	}
     private Shape parseLine(String[] parts) {
         //line     start_x start_y end_x end_y
     	float x1 = Float.parseFloat(parts[0]);
@@ -94,7 +133,6 @@ public class Sketch {
     }
     private Shape parseCircle(String[] parts) {
     	//circle   radius center_x center_y
-
         float r = Float.parseFloat(parts[0]);
     	float cX = Float.parseFloat(parts[1]);
         float cY = Float.parseFloat(parts[2]);
@@ -170,15 +208,15 @@ public class Sketch {
         newKite.updateAttribs();
         return newKite;
 	}
-
-    public ArrayList<Shape> fromFile(String filePath) {
-    	try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+    
+    public void fromFile(String filePath) {
+    	try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {    		
     		String line;
-            ArrayList<Shape> shapes = new ArrayList<Shape>();
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
                 if (line.isEmpty() || line.startsWith("#")) { continue; }
                 String[] parts = line.split("\\s+");
+            	parts = replaceVarValues(parts);
                 String shapeType = parts[0];
                 switch (shapeType) {
                     case "line":
@@ -208,17 +246,18 @@ public class Sketch {
                     case "animateTransform":
                     	parseAnimTranslateValues(shapes.get(shapes.size()-1), Arrays.copyOfRange(parts, 1, parts.length));
                     	break;
+                    case "var":
+                    	varMap.put(parts[1], Arrays.copyOfRange(parts, 2, parts.length));
+                    	break;
                     default:
                         System.out.println("Unknown shape: " + shapeType);
                 }
 			}	
-           return shapes;
     	} 
-    catch (Exception e) {
-    	e.printStackTrace();
-		return null;
-	} 
-}
+	    catch (Exception e) {
+	    	e.printStackTrace();
+		} 
+    }
 
     public void render(String dir, String filename) {
         if (dir == null || dir.isEmpty()) { dir = ""; }
@@ -231,9 +270,11 @@ public class Sketch {
             System.err.println("Input file not found: " + inputFile.getAbsolutePath());
             return; 
         }
-
-        ArrayList<Shape> shapes = fromFile(absoluteFilePath);
-        SVG svg = new SVG();
-        svg.toFile(filename, shapes);
+        fromFile(absoluteFilePath);
+        for(Shape shape:shapes) {
+        	svg.addContent(shape);
+        }
+        svg.toFile(filename);
     }
+    
 }
