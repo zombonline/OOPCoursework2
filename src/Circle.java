@@ -17,6 +17,7 @@ public class Circle extends Shape{
 		this();
 		setScale(r);
 		setPos(x,y);
+		setOrigin(x,-y);
 	}
 
 	@Override

@@ -1,11 +1,8 @@
 public class RegPolygon extends LineStrip {
-
-	// Construct from two endpoints
 	public RegPolygon(int s, float r, float cX, float cY){
 		setNumVertices(s);
-		
 		this.setClosed(true);
-		
+		setOrigin(cX,-cY);
 		for (int i = 0; i < s; i++) {
 	        double angle = 2 * Math.PI * i / s + Math.PI / 2;
 	        
@@ -15,12 +12,4 @@ public class RegPolygon extends LineStrip {
 	        this.setVertex(i, new Vec2(x, y));
 	    }
 	}
-
-    // Override the getTag() method from Shape
-    @Override
-    public String getTag() {
-        return "polygon";
-    }
-
-    
 }

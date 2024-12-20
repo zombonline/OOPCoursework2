@@ -7,7 +7,10 @@ public class RightAngleTriangle extends LineStrip{
 		this();
 		this.setClosed(true);
 		Vec2[] verts;
+		setOrigin(x,-y);
+
 		if(centrePosition) {
+			System.out.println(y);
 			verts = new Vec2[] {
 					new Vec2(x-(w/2),y-(h/2)),
 					new Vec2(x-(w/2),y+(h/2)),

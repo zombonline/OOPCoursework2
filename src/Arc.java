@@ -14,6 +14,7 @@ public class Arc extends Shape {
 		attribData = newAttrib("d");
 		setScale(radius);
 		setPos(cx, cy);
+		setOrigin(cx,cy);
 		this.angle = angle;
 		this.length = length;
 	}

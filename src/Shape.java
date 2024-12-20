@@ -2,18 +2,21 @@
 
 // SVG shape with a geometric transform
 public class Shape extends Elem {
-	private Attrib attribStyle;
-
-	int fill = ColorInt.from(0,0);
-	int stroke = ColorInt.from(0);
-	float strokeWidth = 1.f;
+	private int fill = ColorInt.from(0,0);
+	private int stroke = ColorInt.from(0);
+	private float strokeWidth = 1.f;
 
 	private Vec2 scale = new Vec2(1.f);
 	private Vec2 rotation = new Vec2(1.f, 0.f); // in complex form
 	private Vec2 pos = new Vec2(0.f);
+	private Vec2 origin = new Vec2(0.f);
 
+	private Attrib attribStyle;
+	private Attrib attribOrigin;
+	
 	public Shape(){
 		attribStyle = newAttrib("style");
+		attribOrigin = newAttrib("transform-origin");
 	}
 
 
@@ -27,6 +30,7 @@ public class Shape extends Elem {
 			style += ";stroke:#" + ColorInt.hexString(stroke);
 		}
 		attribStyle.val = style;
+		attribOrigin.val = String.valueOf(origin.x) + " " + String.valueOf(origin.y);
 	}
 	
 	// Insert missing setters and getters here...
@@ -65,6 +69,12 @@ public class Shape extends Elem {
 	}
 	public void setPos(float x, float y) {
 		this.pos.set(x,y);
+	}	
+	public Vec2 getOrigin() {
+		return origin;
+	}
+	public void setOrigin(float x, float y) {
+		this.origin.set(x,y);
 	}	
 	public Shape setRotation(float deg){
 		final float d2r = (float)(Math.PI / 180.);

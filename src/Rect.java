@@ -1,9 +1,7 @@
 public class Rect extends LineStrip {
-
 	public Rect(){
 		setNumVertices(4);
 	}
-
 	public Rect(float w, float h, float cX, float cY){
 		this();
 		this.setClosed(true);

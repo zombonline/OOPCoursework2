@@ -37,7 +37,7 @@ public class LineStrip extends Shape {
 		attribPoints.val = s;
 	}
 
-	public void setNumVertices(int n){
+	protected void setNumVertices(int n){
 		this.vertices = new float[n*2];
 	}
 
@@ -46,21 +46,21 @@ public class LineStrip extends Shape {
 	}
 	
 	// Set vertex at index
-	public void setVertex(int i, float x, float y){
+	protected void setVertex(int i, float x, float y){
 		int index = i*2;
 		this.vertices[index]=x;
 		this.vertices[index+1]=y;
 	}
 	
 	// Set vertex at index
-	public void setVertex(int i, Vec2 p){
+	protected void setVertex(int i, Vec2 p){
 		int index = i*2;
 		this.vertices[index]=p.x;
 		this.vertices[index+1]=p.y;
 	}
 
 	// Get vertex component (0:x or 1:y) at index
-	public float getVertex(int i, int comp){
+	protected float getVertex(int i, int comp){
 	    int index = i * 2 + comp; // Correctly calculate the index
 	    return this.vertices[index];
 	}

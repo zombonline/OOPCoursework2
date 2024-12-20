@@ -1,0 +1,105 @@
+ngon 12 55 0 0 2 2128A6FF 0468BFff
+animateTransform rotate 0 0 0 30 0 0 5.125 .25 1
+animateTransform rotate 0 0 0 30 0 0 10.125 .25 1
+animateTransform rotate 0 0 0 30 0 0 15.125 .25 1
+animateTransform rotate 0 0 0 30 0 0 20.125 .25 1
+animateTransform rotate 0 0 0 30 0 0 25.125 .25 1
+animateTransform rotate 0 0 0 30 0 0 30.125 .25 1
+animateTransform rotate 0 0 0 30 0 0 35.125 .25 1
+animateTransform rotate 0 0 0 30 0 0 40.125 .25 1
+animateTransform rotate 0 0 0 30 0 0 45.125 .25 1
+animateTransform rotate 0 0 0 30 0 0 50.125 .25 1
+animateTransform rotate 0 0 0 30 0 0 55.125 .25 1
+animateTransform rotate 0 0 0 30 0 0 60.125 .25 1
+
+circle 2 0 47.5  .5 D96704FF D96704FF
+animateTransform scale 1 1 1.5 1.5 60 .25 1
+animateTransform scale 1.5 1.5 1 1 60.25 .25 1
+
+circle 2 23.75 41.25 .5 D96704FF D96704FF
+animateTransform scale 1 1 1.5 1.5 5 .25 1
+animateTransform scale 1.5 1.5 1 1 5.25 .25 1
+
+circle 2 41.25 23.75 .5 D96704FF D96704FF
+animateTransform scale 1 1 1.5 1.5 10 .25 1
+animateTransform scale 1.5 1.5 1 1 10.25 .25 1
+
+circle 2 47.5 0 .5 D96704FF D96704FF
+animateTransform scale 1 1 1.5 1.5 15 .25 1
+animateTransform scale 1.5 1.5 1 1 15.25 .25 1
+
+circle 2 41.75 -23.25 .5 D96704FF D96704FF
+animateTransform scale 1 1 1.5 1.5 20 .25 1
+animateTransform scale 1.5 1.5 1 1 20.25 .25 1
+
+circle 2 24.25 -40.75 .5 D96704FF D96704FF
+animateTransform scale 1 1 1.5 1.5 25 .25 1
+animateTransform scale 1.5 1.5 1 1 25.25 .25 1
+
+circle 2 0 -47.5 .5 D96704FF D96704FF
+animateTransform scale 1 1 1.5 1.5 30 .25 1
+animateTransform scale 1.5 1.5 1 1 30.25 .25 1
+
+circle 2 -23.25  -41.75 .5 D96704FF D96704FF
+animateTransform scale 1 1 1.5 1.5 35 .25 1
+animateTransform scale 1.5 1.5 1 1 35.25 .25 1
+
+circle 2 -41.25 -23.75 .5 D96704FF D96704FF
+animateTransform scale 1 1 1.5 1.5 40 .25 1
+animateTransform scale 1.5 1.5 1 1 40.25 .25 1
+
+circle 2 -47.5 0 .5 D96704FF D96704FF
+animateTransform scale 1 1 1.5 1.5 45 .25 1
+animateTransform scale 1.5 1.5 1 1 45.25 .25 1
+
+circle 2 -41.25 23.75 .5 D96704FF D96704FF
+animateTransform scale 1 1 1.5 1.5 50 .25 1
+animateTransform scale 1.5 1.5 1 1 50.25 .25 1
+
+circle 2 -24.25 40.75 .5 D96704FF D96704FF
+animateTransform scale 1 1 1.5 1.5 55 .25 1
+animateTransform scale 1.5 1.5 1 1 55.25 .25 1
+
+kite 20 40 0 -20 .5 D96704FF D92B04FF
+animateTransform rotate 180 0 0 540 0 0 0 60 1
+
+righttriangle true 20 20 -2.5 80 .5 000000ff 0468BFff
+animateTransform translate -50 0 0 0 0 1.5 1
+animateTransform scale 1 1 1.5 1.5 5 .25 1
+animateTransform scale 1.5 1.5 1 1 5.25 .25 1
+
+animateTransform scale 1 1 1.5 1.5 15 .25 1
+animateTransform scale 1.5 1.5 1 1 15.25 .25 1
+
+animateTransform scale 1 1 1.5 1.5 25 .25 1
+animateTransform scale 1.5 1.5 1 1 25.25 .25 1
+
+animateTransform scale 1 1 1.5 1.5 35 .25 1
+animateTransform scale 1.5 1.5 1 1 35.25 .25 1
+
+animateTransform scale 1 1 1.5 1.5 45 .25 1
+animateTransform scale 1.5 1.5 1 1 45.25 .25 1
+
+animateTransform scale 1 1 1.5 1.5 55 .25 1
+animateTransform scale 1.5 1.5 1 1 55.25 .25 1
+
+righttriangle true 20 20 2.5 81.25 .5 000000ff D96704FF
+animateTransform translate 50 0 0 0 0 1.5 1
+animateTransform rotate 180 0 0 180 0 0 0 0 indefinite
+animateTransform scale 1 1 1.5 1.5 10 .25 1
+animateTransform scale 1.5 1.5 1 1 10.25 .25 1
+
+animateTransform scale 1 1 1.5 1.5 20 .25 1
+animateTransform scale 1.5 1.5 1 1 20.25 .25 1
+
+animateTransform scale 1 1 1.5 1.5 30 .25 1
+animateTransform scale 1.5 1.5 1 1 30.25 .25 1
+
+animateTransform scale 1 1 1.5 1.5 40 .25 1
+animateTransform scale 1.5 1.5 1 1 40.25 .25 1
+
+animateTransform scale 1 1 1.5 1.5 50 .25 1
+animateTransform scale 1.5 1.5 1 1 50.25 .25 1
+
+animateTransform scale 1 1 1.5 1.5 60 .25 1
+animateTransform scale 1.5 1.5 1 1 60.25 .25 1

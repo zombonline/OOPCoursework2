@@ -3,16 +3,9 @@ import java.nio.file.*;
 import java.util.*;
 
 public class Sketch {
-
-    public Sketch() {
-    }
-
-    // Add a shape to the sketch
-    public void addShape(Shape shape) {
-    }
-
-    // Converts shapes to an SVG string
-    
+	public SVG svg;
+	public Shape[] shapes;
+	
     private boolean isFloat(String val) {
     	try {
     		Float.parseFloat(val);
@@ -43,6 +36,50 @@ public class Sketch {
         if (index < parts.length) {
             shape.setFill(getHexColorInt(parts[index]));
         }
+	}
+    private void parseAnimTranslateValues(Shape shape, String[] parts) {
+        // First part indicates the type of transform
+        String type = parts[0];
+
+        float begin = Float.parseFloat(parts[parts.length - 3]);
+        float dur = Float.parseFloat(parts[parts.length - 2]);
+        String repeatCount = parts[parts.length - 1];
+
+        Animation newAnim;
+
+        switch (type) {
+            case "translate":
+                // translate requires 4 positional values: fromX, fromY, toX, toY
+                float fromX = Float.parseFloat(parts[1]);
+                float fromY = Float.parseFloat(parts[2]);
+                float toX = Float.parseFloat(parts[3]);
+                float toY = Float.parseFloat(parts[4]);
+                newAnim = new Animation(type, fromX, fromY, toX, toY, begin, dur, repeatCount);
+                break;
+
+            case "scale":
+                fromX = Float.parseFloat(parts[1]);
+                fromY = Float.parseFloat(parts[2]);
+                toX = Float.parseFloat(parts[3]);
+                toY = Float.parseFloat(parts[4]);
+                newAnim = new Animation(type, fromX, fromY, toX, toY, begin, dur, repeatCount);
+                break;
+
+            case "rotate":
+            	float fromA = Float.parseFloat(parts[1]);
+                fromX = Float.parseFloat(parts[2]);
+                fromY = Float.parseFloat(parts[3]);
+                float toA = Float.parseFloat(parts[4]);
+                toX = Float.parseFloat(parts[5]);
+                toY = Float.parseFloat(parts[6]);
+                newAnim = new Animation(type, fromA, fromX, fromY, toA, toX, toY, begin, dur, repeatCount);
+                break;
+
+            default:
+                throw new IllegalArgumentException("Unsupported animation type: " + type);
+        }
+
+        shape.addContent(newAnim);
     }
     private Shape parseLine(String[] parts) {
         //line     start_x start_y end_x end_y
@@ -84,8 +121,8 @@ public class Sketch {
     	float h = Float.parseFloat(parts[1]);
     	float cX = Float.parseFloat(parts[2]);
     	float cY = Float.parseFloat(parts[3]);
-        Kite newRect = new Kite(w,h,cX,cY);
-        parseOptionalValues(newRect, Arrays.copyOfRange(parts, 4, parts.length));
+        Rect newRect = new Rect(w,h,cX,cY);
+//        parseOptionalValues(newRect, Arrays.copyOfRange(parts, 4, parts.length));
         newRect.updateAttribs();
         return newRect;
     }
@@ -122,9 +159,19 @@ public class Sketch {
         newRightAngleTriangle.updateAttribs();
         return newRightAngleTriangle;
     }
+    private Shape parseKite(String[] parts) {
+    	//kite 20 40 75 25 
+    	float w = Float.parseFloat(parts[0]);
+    	float h = Float.parseFloat(parts[1]);
+    	float cX = Float.parseFloat(parts[2]);
+    	float cY = Float.parseFloat(parts[3]);
+    	Kite newKite = new Kite(w,h,cX,cY);
+        parseOptionalValues(newKite, Arrays.copyOfRange(parts, 4, parts.length));
+        newKite.updateAttribs();
+        return newKite;
+	}
 
-    // Parses the input file and adds shapes dynamically
-    public ArrayList<Shape> loadShapesFromFile(String filePath) {
+    public ArrayList<Shape> fromFile(String filePath) {
     	try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
     		String line;
             ArrayList<Shape> shapes = new ArrayList<Shape>();
@@ -155,6 +202,12 @@ public class Sketch {
                     case "righttriangle":
                         shapes.add(parseRightTriangle(Arrays.copyOfRange(parts, 1, parts.length)));
                         break;
+                    case "kite":
+                    	shapes.add(parseKite(Arrays.copyOfRange(parts, 1, parts.length)));
+                    	break;
+                    case "animateTransform":
+                    	parseAnimTranslateValues(shapes.get(shapes.size()-1), Arrays.copyOfRange(parts, 1, parts.length));
+                    	break;
                     default:
                         System.out.println("Unknown shape: " + shapeType);
                 }
@@ -167,7 +220,6 @@ public class Sketch {
 	} 
 }
 
-    // Generates SVG and writes it to a file
     public void render(String dir, String filename) {
         if (dir == null || dir.isEmpty()) { dir = ""; }
 
@@ -180,7 +232,7 @@ public class Sketch {
             return; 
         }
 
-        ArrayList<Shape> shapes = loadShapesFromFile(absoluteFilePath);
+        ArrayList<Shape> shapes = fromFile(absoluteFilePath);
         SVG svg = new SVG();
         svg.toFile(filename, shapes);
     }

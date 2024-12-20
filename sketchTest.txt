@@ -6,8 +6,7 @@ line -95 -65 95 -65 4 ff2000ff
 circle 20 -75 25
 arc 20 -90 180 -25 25
 square 40 25 25
-rect 20 40 75 25 000000ff 800080ff
-righttriangle true 20 40 125 25
+rect 20 40 75 25 
 
 # Row 2: regular polygons
 ngon 3 20 -75 -25
